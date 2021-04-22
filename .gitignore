@@ -1,0 +1,39 @@
+
+# Ignore bundler config.
+/.bundle
+# lock version files.
+package-lock.json
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/node_modules
+/yarn-error.log
+.byebug_history
+.idea
+config/secrets.yml
+config/database.yml
+config/secrets
+# vim swap files
+*.swp
+# dev log
+config/initializers/dev_logger.rb
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+/storage/*
+# ansible inventory retries
+*.retry
+coverage
+#docker
+volumes/
+storage/
+.DS_Store
+.irb_history
