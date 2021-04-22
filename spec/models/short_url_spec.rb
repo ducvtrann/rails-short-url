@@ -7,7 +7,10 @@ RSpec.describe ShortUrl, type: :model do
     let(:short_url) { ShortUrl.create(full_url: "https://www.beenverified.com/faq/") }
 
     it "finds a short_url with the short_code" do
-      expect(ShortUrl.find_by_short_code(short_url.short_code)).to eq short_url
+      # CHANGE TEST
+      # Instead of saving the short code to the db, I will just calculate it on the fly.
+      # Therefore, this test will test my decode function and return the object PK
+      expect(ShortUrl.find_by(id: short_url.long_code(short_url.short_code))).to eq short_url
     end
 
   end
