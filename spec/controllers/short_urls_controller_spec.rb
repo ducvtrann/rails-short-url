@@ -5,14 +5,17 @@ RSpec.describe ShortUrlsController, type: :controller do
   let(:parsed_response) { JSON.parse(response.body) }
 
   describe "index" do
-
-    let!(:short_url) { ShortUrl.create(full_url: "https://www.test.rspec") }
+    # CHANGED TEST
+    # "https://www.test.rspec" is an invalid url , replaced with google url
+    let!(:short_url) { ShortUrl.create(full_url: "https://www.google.com/") }
 
     it "is a successful response" do
       get :index, format: :json
       expect(response.status).to eq 200
     end
 
+    # OLD TEST
+    # expect(parsed_response['urls']).to be_include(short_url.public_attributes)
     it "has a list of the top 100 urls" do
       get :index, format: :json
 
@@ -22,9 +25,9 @@ RSpec.describe ShortUrlsController, type: :controller do
   end
 
   describe "create" do
-
+     # "https://www.test.rspec" is an invalid url , replaced with google url
     it "creates a short_url" do
-      post :create, params: { full_url: "https://www.test.rspec" }, format: :json
+      post :create, params: { full_url: "https://www.google.com/" }, format: :json
       expect(parsed_response['short_code']).to be_a(String)
     end
 

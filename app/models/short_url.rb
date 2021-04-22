@@ -16,6 +16,7 @@ class ShortUrl < ApplicationRecord
     decode(hash_str)
   end
 
+  # Not 100% sure why the test says fetch title, but the method is update_title!
   def update_title!
   end
 
