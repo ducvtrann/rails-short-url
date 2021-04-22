@@ -2,6 +2,7 @@ class ShortUrl < ApplicationRecord
 
   CHARACTERS = [*'0'..'9', *'a'..'z', *'A'..'Z'].freeze
 
+  validates :full_url, presence: true
   validate :validate_full_url
 
   def short_code
@@ -21,6 +22,14 @@ class ShortUrl < ApplicationRecord
   private
 
   def validate_full_url
+    begin
+      url = URI.parse(self.full_url)
+      response = Net::HTTP.get(url)
+      true if response.is_a?(Net::HTTPSuccess)
+    rescue StandardError => error
+      self.errors[:full_url] << 'is not a valid url'
+      false
+    end
   end
 
   # BASE_62 ENCODING
