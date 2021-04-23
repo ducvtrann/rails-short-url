@@ -1,5 +1,5 @@
 class ShortUrlsController < ApplicationController
-
+  include Base62
   # Since we're working on an API, we don't have authenticity tokens
   skip_before_action :verify_authenticity_token
 
@@ -20,6 +20,15 @@ class ShortUrlsController < ApplicationController
   end
 
   def show
+    url_id = decode(params[:id])
+    url = ShortUrl.find_by(id: url_id)
+
+    if url
+      url.update_attribute(:click_count, url[:click_count] + 1)
+      redirect_to url.full_url
+    else
+      render json:  {}, status: 404
+    end
   end
 
 end
