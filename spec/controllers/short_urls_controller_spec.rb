@@ -39,8 +39,8 @@ RSpec.describe ShortUrlsController, type: :controller do
   end
 
   describe "show" do
-
-    let!(:short_url) { ShortUrl.create(full_url: "https://www.test.rspec") }
+    # CHANGED URL TO BE A VALID URL
+    let!(:short_url) { ShortUrl.create(full_url: "https://www.amazon.com/") }
 
     it "redirects to the full_url" do
       get :show, params: { id: short_url.short_code }, format: :json
