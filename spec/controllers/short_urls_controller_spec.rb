@@ -16,10 +16,10 @@ RSpec.describe ShortUrlsController, type: :controller do
 
     # OLD TEST
     # expect(parsed_response['urls']).to be_include(short_url.public_attributes)
+    # I assume this test is to prove that the url created above is in the array.
     it "has a list of the top 100 urls" do
       get :index, format: :json
-
-      expect(parsed_response['urls']).to be_include(short_url.public_attributes)
+      expect(parsed_response['urls'].find{|item| item["id"] == short_url["id"]}).to_not be_nil
     end
 
   end
