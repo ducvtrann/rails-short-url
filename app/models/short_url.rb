@@ -18,8 +18,7 @@ class ShortUrl < ApplicationRecord
   end
 
   def update_title!
-    # pp 'I RAN IN THE MODEL'
-    Resque.enqueue(UpdateTitleJob, self.id)
+
   end
 
   private

@@ -5,7 +5,7 @@ RSpec.describe UpdateTitleJob, type: :job do
 
 
     let(:short_url) { ShortUrl.create(full_url: "https://www.beenverified.com/faq/") }
-    let(:job) { UpdateTitleJob.perform_later(short_url.id) }
+    let(:job) { UpdateTitleJob.perform(short_url.id) }
 
   it "updates the title" do
       expect(short_url.title).to be_nil
