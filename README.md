@@ -30,3 +30,7 @@
 # Checking your short URL redirect
 
     curl -I localhost:3000/abc
+
+# Algorithm
+
+    short_url/app/services/base_62.rb
