@@ -34,3 +34,4 @@
 # Algorithm
 
     short_url/app/services/base_62.rb
+    * Finish with cmd testing and rspec testing
