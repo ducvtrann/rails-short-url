@@ -4,8 +4,6 @@ class ShortUrl < ApplicationRecord
   validates :full_url, presence: true
   validate :validate_full_url
 
-  after_save :update_title!
-
   def short_code
     return if self.id == nil
     encode(self.id)
@@ -18,7 +16,10 @@ class ShortUrl < ApplicationRecord
   end
 
   def update_title!
-
+    uri = URI(self.full_url)
+    string_result = Net::HTTP.get(uri)
+    title = string_result.match(/<title>(.*?)<\/title>/)[1]
+    self.update_attribute(:title, title)
   end
 
   private
