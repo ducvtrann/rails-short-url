@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class ShortUrl < ApplicationRecord
   include Base62
 
@@ -18,7 +16,7 @@ class ShortUrl < ApplicationRecord
   end
 
   def update_title!
-    open("#{self.full_url}") do |f|
+    URI.open("#{self.full_url}") do |f|
       document = Nokogiri::HTML(f)
       title = document.at_css('title').text
       self.update_attribute(:title, title)
