@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem "json"
 gem "resque"
+gem 'open-uri'
+gem 'rack-cors'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
